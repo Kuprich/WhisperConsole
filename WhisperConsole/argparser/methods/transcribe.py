@@ -1,5 +1,4 @@
 from argparser.extensions import str2bool
-
 from argparse import ArgumentParser
 
 def _transcribe_arguments(parser:ArgumentParser):
@@ -17,13 +16,6 @@ def _transcribe_arguments(parser:ArgumentParser):
         type=str2bool,
         help="""Whether to display the text being decoded to the console. If True, displays all the details,
         If False, displays minimal details. If None, does not display anything""")
-        
-    transcribe_arguments.add_argument(
-        "--temperature",
-        type=float,
-        nargs="+",
-        default=[0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
-        help="""whether to preload the model weights into host memory""")
     
     transcribe_arguments.add_argument(
         "--compression_ratio_threshold",

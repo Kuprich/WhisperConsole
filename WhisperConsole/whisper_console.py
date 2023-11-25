@@ -15,16 +15,29 @@ model = whisper.load_model(
     in_memory=args.in_memory,
 )
 
+args.fp16=False
 
-# result = model.transcribe("audio.mp3", verbose=True)
+decode_options = {
+    "task": args.task,
+    "language": args.language,
+    "temperature": args.temperature,
+    "sample_len": args.sample_len,
+    "best_of": args.best_of,
+    "beam_size": args.beam_size,
+    "patience": args.patience,
+    "length_penalty": args.length_penalty,
+    "without_timestamps": args.without_timestamps,
+    "max_initial_timestamp": args.max_initial_timestamp,
+    "fp16": args.fp16,
+}
+    
 
 args.audio = "audio.mp3"
 args.verbose = True
 
 result = model.transcribe(
     audio = args.audio,
-    verbose=args.verbose,               
-    temperature=args.temperature,               
+    verbose=args.verbose,                         
     compression_ratio_threshold=args.compression_ratio_threshold,              
     logprob_threshold=args.logprob_threshold,               
     no_speech_threshold=args.no_speech_threshold,               
@@ -33,10 +46,11 @@ result = model.transcribe(
     word_timestamps=args.word_timestamps,              
     prepend_punctuations=args.prepend_punctuations,               
     append_punctuations=args.append_punctuations,
+    **decode_options,
     )
 
+
+
 print(result["text"])
-
-
 
 
