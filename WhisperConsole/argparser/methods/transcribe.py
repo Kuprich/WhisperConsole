@@ -3,10 +3,10 @@ from argparse import ArgumentParser
 
 def _transcribe_arguments(parser:ArgumentParser):
     
-    transcribe_arguments = parser.add_argument_group("Transcribe Arguments")
+    transcribe_arguments = parser.add_argument_group("Transcribe")
         
     transcribe_arguments.add_argument(
-        "--audio",
+        "audio",
         help="""The path to the audio file to open""")
         #TODO:
         # audio: Union[str, np.ndarray, torch.Tensor]

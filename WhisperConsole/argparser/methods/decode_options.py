@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 
 def _decode_options_arguments(parser:ArgumentParser):
     
-    decode_arguments = parser.add_argument_group("Decode Options Arguments")
+    decode_arguments = parser.add_argument_group("Decode Options")
         
     decode_arguments.add_argument(
         "--task",

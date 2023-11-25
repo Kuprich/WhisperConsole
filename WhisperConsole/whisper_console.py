@@ -50,7 +50,6 @@ result = model.transcribe(
     )
 
 
-
 print(result["text"])
 
 
