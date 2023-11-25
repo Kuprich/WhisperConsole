@@ -1,4 +1,3 @@
-from pathlib import Path
 from argparser.parser import CustomArgumentParser
 import argparse
 import whisper
@@ -8,9 +7,7 @@ parser = CustomArgumentParser(
 )
 args = parser.parse_all_args()
 
-print("")
-
-args.name="tiny"
+args.name="medium"
 
 model = whisper.load_model(
     name=args.name,
@@ -18,26 +15,28 @@ model = whisper.load_model(
     in_memory=args.in_memory,
 )
 
-# # load audio and pad/trim it to fit 30 seconds
 
-args.file="audio.mp3"
+# result = model.transcribe("audio.mp3", verbose=True)
 
-audio = whisper.load_audio(
-    file=args.file,
-    sr=args.sr
-)
-audio = whisper.pad_or_trim(audio)
+args.audio = "audio.mp3"
+args.verbose = True
 
-# # make log-Mel spectrogram and move to the same device as the model
-# mel = whisper.log_mel_spectrogram(audio).to(model.device)
+result = model.transcribe(
+    audio = args.audio,
+    verbose=args.verbose,               
+    temperature=args.temperature,               
+    compression_ratio_threshold=args.compression_ratio_threshold,              
+    logprob_threshold=args.logprob_threshold,               
+    no_speech_threshold=args.no_speech_threshold,               
+    condition_on_previous_text=args.condition_on_previous_text,               
+    initial_prompt=args.initial_prompt,               
+    word_timestamps=args.word_timestamps,              
+    prepend_punctuations=args.prepend_punctuations,               
+    append_punctuations=args.append_punctuations,
+    )
 
-# # detect the spoken language
-# _, probs = model.detect_language(mel)
-# print(f"Detected language: {max(probs, key=probs.get)}")
+print(result["text"])
 
-# # decode the audio
-# options = whisper.DecodingOptions()
-# result = whisper.decode(model, mel, options)
 
-# # print the recognized text
-# print(result.text)
+
+
