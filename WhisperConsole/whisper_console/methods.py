@@ -1,23 +1,9 @@
-from argparser.parser import CustomArgumentParser
-import argparse
 import whisper
+from whisper import Whisper 
 
-parser = CustomArgumentParser(
-     formatter_class=argparse.ArgumentDefaultsHelpFormatter
-)
-args = parser.parse_all_args()
 
-args.name="medium"
-
-model = whisper.load_model(
-    name=args.name,
-    download_root=args.download_root,
-    in_memory=args.in_memory,
-)
-
-args.fp16=False
-
-decode_options = {
+def _decode_options(args):
+    return {
     "task": args.task,
     "language": args.language,
     "temperature": args.temperature,
@@ -30,12 +16,16 @@ decode_options = {
     "max_initial_timestamp": args.max_initial_timestamp,
     "fp16": args.fp16,
 }
+
+def load_model(args):
+    return whisper.load_model(
+        name=args.name,
+        download_root=args.download_root,
+        in_memory=args.in_memory,
+    )
     
-
-args.audio = "audio.mp3"
-args.verbose = True
-
-result = model.transcribe(
+def transcribe(self:Whisper, args):
+    return self.transcribe(
     audio = args.audio,
     verbose=args.verbose,                         
     compression_ratio_threshold=args.compression_ratio_threshold,              
@@ -46,10 +36,6 @@ result = model.transcribe(
     word_timestamps=args.word_timestamps,              
     prepend_punctuations=args.prepend_punctuations,               
     append_punctuations=args.append_punctuations,
-    **decode_options,
+    **_decode_options(args),
     )
-
-
-print(result["text"])
-
-
+    
