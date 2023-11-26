@@ -1,6 +1,7 @@
 from argparser.parser import CustomArgumentParser
 import argparse
 from whisper_console.methods import load_model, transcribe
+from whisper_console.output import output_result
 
 
 parser = CustomArgumentParser(
@@ -9,12 +10,11 @@ parser = CustomArgumentParser(
 
 args = parser.parse_all_args()
 
-args.name="medium"
-
 model = load_model(args)
 
 result = transcribe(model, args)
 
-print(result["text"])
+output_result(result, args)
+
 
 

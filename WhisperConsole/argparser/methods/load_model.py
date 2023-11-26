@@ -7,13 +7,13 @@ def _load_model_arguments(parser:ArgumentParser):
     model_arguments = parser.add_argument_group("Load Model")
         
     model_arguments.add_argument(
-        "--name",
+        "--model",
         default="base",
         help="""one of the official model names listed by `whisper.available_models()`, or
     path to a model checkpoint containing the model dimensions and the model state_dict.""")
         
     model_arguments.add_argument(
-        "--download_root",
+        "--model_dir",
         default="~/.cache/whisper",
         help="""path to download the model files""")
         

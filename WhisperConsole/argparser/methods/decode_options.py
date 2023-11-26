@@ -7,6 +7,7 @@ def _decode_options_arguments(parser:ArgumentParser):
         
     decode_arguments.add_argument(
         "--task",
+        choices=['transcribe', 'translate'],
         default="transcribe",
         help="""whether to perform X->X "transcribe" or X->English "translate""")
     
