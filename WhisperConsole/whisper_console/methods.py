@@ -1,3 +1,4 @@
+from pathlib import Path
 import whisper
 from whisper import Whisper 
 
@@ -18,9 +19,12 @@ def _decode_options(args):
 }
 
 def load_model(args):
+    
+    download_root = Path(args.model_dir).expanduser()
+    
     return whisper.load_model(
         name=args.model,
-        download_root=args.model_dir,
+        download_root=download_root,
         in_memory=args.in_memory,
     )
     

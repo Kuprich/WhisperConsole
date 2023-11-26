@@ -2,6 +2,8 @@ from argparser.extensions import str2bool
 
 from argparse import ArgumentParser
 
+
+
 def _load_model_arguments(parser:ArgumentParser):
     
     model_arguments = parser.add_argument_group("Load Model")
@@ -15,7 +17,7 @@ def _load_model_arguments(parser:ArgumentParser):
     model_arguments.add_argument(
         "--model_dir",
         default="~/.cache/whisper",
-        help="""path to download the model files""")
+        help="""path to download the model files.""")
         
     model_arguments.add_argument(
         "--in_memory",
