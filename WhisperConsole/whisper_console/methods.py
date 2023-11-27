@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 import whisper
 from whisper import Whisper 
@@ -22,6 +23,8 @@ def load_model(args):
     
     download_root = Path(args.model_dir).expanduser()
     
+    print(f"Path to download model files: {download_root}")
+    
     return whisper.load_model(
         name=args.model,
         download_root=download_root,
@@ -42,4 +45,14 @@ def transcribe(model:Whisper, args):
         append_punctuations=args.append_punctuations,
         **_decode_options(args),
     )
+    
+
+    
+def ffmpeg_is_installed():
+    try:
+        os.startfile(r'ffmpeg')
+        return True
+    except:
+        return False
+        
     

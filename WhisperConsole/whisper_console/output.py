@@ -13,7 +13,7 @@ def output_result(result:dict[str,str|list], args):
     match args.output_format.lower():
         
         case "console":
-            print(out_result)
+            print("\n"+out_result)
         
         case "txt" | "json":
             return _write_to_file(out_result, args)
