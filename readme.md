@@ -6,7 +6,8 @@ Standalone executables of [Open AI / Whisper](https://github.com/openai/whisper)
 
 if you **don't want to install Python**, use the following standalone executable for your purposes
 
-For whisper_console.exe required [FFMpeg](https://ffmpeg.org/). 
+
+For [whisper_console.exe](https://github.com/Kuprich/WhisperConsole/releases/tag/whisper) required [FFMpeg](https://ffmpeg.org/). 
 
 >   ``📝``If you run the application without ffmpeg preinstalled , the execution will be interrupted with the following error: *"FFmpeg is required! Please, install it to continue. More info: https://ffmpeg.org/"*
 
@@ -46,6 +47,14 @@ For whisper_console.exe required [FFMpeg](https://ffmpeg.org/).
  ```.\whisper_console.exe audio.mp3 --model large-v3 --verbose true --language en --output_format json --output_text_only false```
  </li>
  </ol>
+
+### More Info
+
+Please, for more info visit the General project page - [Whisper](https://github.com/openai/whisper)
+
+Visit similar project page - [whisper-standalone-win](https://github.com/Purfview/whisper-standalone-win)
+
+
 
 
 
