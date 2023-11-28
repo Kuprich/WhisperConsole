@@ -6,15 +6,14 @@ Standalone executables of [Open AI / Whisper](https://github.com/openai/whisper)
 
 if you **don't want to install Python**, use the following standalone executable for your purposes
 
-There are two standalone applications:
+For whisper_console.exe required [FFMpeg](https://ffmpeg.org/). 
 
-1. whisper_console.exe without ffmpeg. (It needs to be installed manually)
+>   ``📝``If you run the application without ffmpeg preinstalled , the execution will be interrupted with the following error: *"FFmpeg is required! Please, install it to continue. More info: https://ffmpeg.org/"*
 
-    >   ``📝``If you run the application without ffmpeg preinstalled , the execution will be interrupted with the following error: *"FFmpeg is required! Please, install it to continue. More info: https://ffmpeg.org/"*
-
-2. whisper_console.exe which contains ffmpeg
 
 ### Requirements
+
++ FFMpeg - [more details](https://ffmpeg.org/)
 
 + Microsoft Visual C++ Redistributable latest supported - [more details]((https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170))
 
