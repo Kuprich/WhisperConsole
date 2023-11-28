@@ -16,7 +16,7 @@ For [whisper_console.exe](https://github.com/Kuprich/WhisperConsole/releases/tag
 
 + FFMpeg - [more details](https://ffmpeg.org/)
 
-+ Microsoft Visual C++ Redistributable latest supported - [more details]((https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170))
++ Microsoft Visual C++ Redistributable latest - [more details](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
 
 + NET 6.0 runtime - [more deatils](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
