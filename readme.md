@@ -23,7 +23,7 @@ For [whisper_console.exe](https://github.com/Kuprich/WhisperConsole/releases/tag
 ### Usage Examples
 
  <ol>
- <li> Show help to show all arguments (Perharps, some arguments don't working correctly, I'm not sure):
+ <li> Use --help or -h command to show all arguments (Perharps, some arguments don't working correctly, I'm not sure):
  
  ```.\whisper_console.exe --help```
  </li>
