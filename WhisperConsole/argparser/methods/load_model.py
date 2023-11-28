@@ -10,6 +10,7 @@ def _load_model_arguments(parser:ArgumentParser):
         
     model_arguments.add_argument(
         "--model",
+        choices=['tiny.en', 'tiny', 'base.en', 'base', 'small.en', 'small', 'medium.en', 'medium', 'large-v1', 'large-v2', 'large-v3', 'large'],
         default="base",
         help="""one of the official model names listed by `whisper.available_models()`, or
     path to a model checkpoint containing the model dimensions and the model state_dict.""")

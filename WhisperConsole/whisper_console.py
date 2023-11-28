@@ -22,5 +22,9 @@ result = transcribe(model, args)
 
 out_file = output_result(result, args)
 
+if out_file is not None:
+    print(f"\nResult saved to the file:{out_file}")
+
+
 
 
