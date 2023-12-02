@@ -1,40 +1,46 @@
-
 import json
 import os
 from pathlib import Path
+import shutil
 
-FILE_NAME = "result"
 
-
-def output_result(result:dict[str,str|list], args):
+class ResultSaver:
     
-    out_result = result["text"] if args.output_text_only else result
+    _segment_num = 0
+    segment_dir_name = "segments"
+    text_file_basename = "text.json"
     
-    match args.output_format.lower():
+    def segment_filepath(self):
+        return os.path.join(self.segments_dir,
+                            "segment_"+ str(self._segment_num) + ".json")
+    
+    def text_filepath(self):
+        return os.path.join(self.output_dir,
+                            self.text_file_basename)
+
         
-        case "console":
-            print("\n"+out_result)
+    def __init__(self, audio_file):
+        self.output_dir = os.path.splitext(os.path.basename(Path(audio_file)))[0]
+        self.segments_dir = os.path.join(self.output_dir, self.segment_dir_name)
+    
+    def prepare_output(self):
         
-        case "txt" | "json":
-            return _write_to_file(out_result, args)
-            
-            
-def _write_to_file(result, args):
+        if Path.exists(Path(self.output_dir)):
+            self._delete_everythong_in_folder(self.output_dir)
+        
+        os.mkdir(self.output_dir)
+        os.mkdir(self.segments_dir)
+        
+    def _delete_everythong_in_folder(self, folder_path):
+        shutil.rmtree(folder_path)    
     
-    out_dir = Path.cwd() if args.output_dir == "." else args.output_dir
-    out_file = os.path.join(out_dir, FILE_NAME+"."+args.output_format)
-    
-    os.remove(out_file) if os.path.exists(out_file) else None
-    
-    try:
-        with open(out_file , "w", encoding="utf-8") as file:
-            if args.output_format.lower()=="json":
-                json.dump(result , file, ensure_ascii=False, indent=4, )
-            else:
-                file.write(result)
-                
-        return out_file
-    
-    except:
-        print(f"An error occurred while writing file {out_file}. the result will be printed to the console:")
-        print(result)
+        
+    def segments_to_file(self, segment):
+        with open(self.segment_filepath(), "w", encoding="utf-8") as json_file:
+            json_file.write(json.dumps(segment, ensure_ascii=False, indent=4))
+        self._segment_num+=1
+        
+    def text_to_file(self, text):
+        with open(self.text_filepath(), "w", encoding="utf-8") as json_file:
+            json_file.write(json.dumps(dict(text=text), ensure_ascii=False, indent=4))
+        

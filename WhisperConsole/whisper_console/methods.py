@@ -3,6 +3,8 @@ from pathlib import Path
 import whisper
 from whisper import Whisper 
 
+from whisper_console.transcribe import transcribe as transcribe_fucntion
+
 
 def _decode_options(args):
     return {
@@ -32,7 +34,8 @@ def load_model(args):
     )
     
 def transcribe(model:Whisper, args):
-    return model.transcribe(
+    return transcribe_fucntion(
+        model= model,
         audio = args.audio,
         verbose=args.verbose,                         
         compression_ratio_threshold=args.compression_ratio_threshold,              
@@ -43,10 +46,10 @@ def transcribe(model:Whisper, args):
         word_timestamps=args.word_timestamps,              
         prepend_punctuations=args.prepend_punctuations,               
         append_punctuations=args.append_punctuations,
+        result_to_file=args.result_to_file,
         **_decode_options(args),
     )
     
-
     
 def ffmpeg_is_installed():
     try:
